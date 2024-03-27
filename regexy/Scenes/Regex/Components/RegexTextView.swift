@@ -9,10 +9,26 @@ import UIKit
 
 class RegexTextView: UITextView {
     
-    // MARK: Life cycle
+    // MARK: Properties
+    
+    private(set) var highlightedRanges: [Range<String.Index>] = []
+    var fontSize: CGFloat = 16.0 {
+        didSet { applyHighlights() }
+    }
+    
+    // MARK: - Life cycle
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
+        font = .systemFont(ofSize: fontSize)
         autocorrectionType = .no
         autocapitalizationType = .none
         layer.borderColor = UIColor.darkGray.withAlphaComponent(0.5).cgColor
@@ -21,21 +37,30 @@ class RegexTextView: UITextView {
         contentInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func highlightRanges(_ ranges: [Range<String.Index>]) {
-        let attributedContent = NSMutableAttributedString(string: text)
-        attributedContent.addAttribute(.foregroundColor, value: UIColor.lightText, range: NSRange(text.startIndex..<text.endIndex, in: text))
-        for range in ranges {
-            attributedContent.addAttribute(.backgroundColor, value: UIColor.systemIndigo.withAlphaComponent(0.5), range: NSRange(range, in: text))
-        }
-        attributedText = attributedContent
+        highlightedRanges = ranges
+        applyHighlights()
     }
     
     func clearHighlights() {
         let attributedContent = NSAttributedString(string: text)
         attributedText = attributedContent
+    }
+    
+    private func applyHighlights() {
+        let attributedContent = makeAttributedContent()
+        for range in highlightedRanges {
+            attributedContent.addAttribute(.backgroundColor, value: UIColor.systemIndigo.withAlphaComponent(0.5), range: NSRange(range, in: text))
+        }
+        attributedText = attributedContent
+    }
+    
+    private func makeAttributedContent() -> NSMutableAttributedString {
+        let attributedContent = NSMutableAttributedString(string: text)
+        attributedContent.addAttributes([
+            .foregroundColor: UIColor.label,
+            .font: UIFont.systemFont(ofSize: fontSize)
+        ], range: NSRange(text.startIndex..<text.endIndex, in: text))
+        return attributedContent
     }
 }

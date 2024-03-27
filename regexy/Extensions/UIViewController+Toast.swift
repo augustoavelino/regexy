@@ -8,38 +8,54 @@
 import UIKit
 
 extension UIViewController {
+    func removeToasts() {
+        let toasts = view.subviews.filter({ $0 is DSToastView })
+        for toast in toasts {
+            toast.removeFromSuperview()
+        }
+    }
+    
     func showToast(withMessage message: String, duration: TimeInterval = 2.0) {
-        let toast = makeToast(message)
-        view.addSubview(toast)
-        let constraints = toast.constraint(centerX: (view.centerXAnchor, 0.0), top: (view.safeAreaLayoutGuide.bottomAnchor, view.safeAreaInsets.bottom))
-        view.layoutIfNeeded()
-        constraints.top?.constant = -(toast.bounds.height + 16)
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }) { _ in
+        removeToasts()
+        let toast = DSToastView(message)
+        prepareToast(toast)
+        animateToast(toast) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self, weak toast] in
-                guard let self = self else { return }
-                constraints.top?.constant = self.view.safeAreaInsets.bottom
-                UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
-                    self.view.layoutIfNeeded()
-                }) { [weak toast] _ in
-                    toast?.removeFromSuperview()
-                }
+                guard let self = self, let toast = toast else { return }
+                self.dismissToast(toast)
             }
         }
     }
     
-    private func makeToast(_ message: String) -> UIView {
-        let toastView = UIView()
-//        toastView.constraint(heightValue: 36.0)
-        let label = UILabel()
-        toastView.addSubview(label)
-        label.constraintToFill(constant: 8.0)
-        label.textAlignment = .center
-        label.text = message
-        toastView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        toastView.layer.cornerRadius = 8.0
-        toastView.clipsToBounds = true
-        return toastView
+    func prepareToast(_ toast: DSToastView, completion: (() -> Void)? = nil) {
+        view.addSubview(toast)
+        let topConstraint = toast.constraint(centerX: (view.centerXAnchor, 0.0), top: (view.safeAreaLayoutGuide.bottomAnchor, view.safeAreaInsets.bottom)).top
+        topConstraint?.identifier = DSToastView.animatedConstraintIdentifier
+        view.layoutIfNeeded()
+    }
+    
+    func animateToast(_ toast: DSToastView, completion: ((Bool) -> Void)? = nil) {
+        animateToastConstraint(toast, constant: -(toast.bounds.height + 16), completion: completion)
+    }
+    
+    func dismissToast(_ toast: DSToastView, completion: ((Bool) -> Void)? = nil) {
+        animateToastConstraint(toast, constant: view.safeAreaInsets.bottom) { [weak toast] isComplete in
+            toast?.removeFromSuperview()
+            completion?(isComplete)
+        }
+    }
+    
+    fileprivate func animateToastConstraint(_ toast: DSToastView, constant: CGFloat, completion: ((Bool) -> Void)? = nil) {
+        guard view.subviews.contains(toast),
+              let topConstraint = getAnimatedToastConstraint() else { return }
+        topConstraint.constant = constant
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: completion)
+    }
+    
+    fileprivate func getAnimatedToastConstraint() -> NSLayoutConstraint? {
+        let constraintIdentifier = DSToastView.animatedConstraintIdentifier
+        return view.constraints.first(where: { $0.identifier == constraintIdentifier })
     }
 }

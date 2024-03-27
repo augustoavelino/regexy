@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652D3CF82BADE84900DE2212 /* DSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D3CF72BADE84900DE2212 /* DSToastView.swift */; };
 		6565352C2BAB1F51008E4C44 /* RegexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565352B2BAB1F51008E4C44 /* RegexTextField.swift */; };
 		6565352E2BAB1F8E008E4C44 /* RegexTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565352D2BAB1F8E008E4C44 /* RegexTextView.swift */; };
 		65AAA7F42BAD19F0007A5B15 /* UIViewController+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AAA7F32BAD19F0007A5B15 /* UIViewController+Toast.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		652D3CF72BADE84900DE2212 /* DSToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSToastView.swift; sourceTree = "<group>"; };
 		6565352B2BAB1F51008E4C44 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
 		6565352D2BAB1F8E008E4C44 /* RegexTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextView.swift; sourceTree = "<group>"; };
 		65AAA7F32BAD19F0007A5B15 /* UIViewController+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Toast.swift"; sourceTree = "<group>"; };
@@ -43,6 +45,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		652D3CF52BADE81C00DE2212 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				652D3CF62BADE83100DE2212 /* Components */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		652D3CF62BADE83100DE2212 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				652D3CF72BADE84900DE2212 /* DSToastView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		656535292BAB1F40008E4C44 /* Regex */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +111,7 @@
 				65EBC8192BA9E19C004E4EF0 /* Application */,
 				65EBC8182BA9E18E004E4EF0 /* Resources */,
 				65D649F52BAB85A100101622 /* Extensions */,
+				652D3CF52BADE81C00DE2212 /* DesignSystem */,
 				65EBC81A2BA9E1B9004E4EF0 /* Scenes */,
 			);
 			path = regexy;
@@ -195,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6565352C2BAB1F51008E4C44 /* RegexTextField.swift in Sources */,
+				652D3CF82BADE84900DE2212 /* DSToastView.swift in Sources */,
 				6565352E2BAB1F8E008E4C44 /* RegexTextView.swift in Sources */,
 				65D649F72BAB85B600101622 /* UIView+Constraints.swift in Sources */,
 				65AAA7F42BAD19F0007A5B15 /* UIViewController+Toast.swift in Sources */,
