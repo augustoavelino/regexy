@@ -42,7 +42,7 @@ class DSToastView: UIView {
     }
     
     private func setupBackground() {
-        backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        backgroundColor = UIColor.black.withAlphaComponent(0.8)
         layer.cornerRadius = 8.0
         clipsToBounds = true
     }

@@ -21,21 +21,47 @@ class RegexTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         setupUI()
+        setupBehavior()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup
+    
     private func setupUI() {
         font = .systemFont(ofSize: fontSize)
-        autocorrectionType = .no
+        contentInset = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: 4.0)
+        setupBorder()
+        setupToolbar()
+    }
+    
+    private func setupBehavior() {
+        keyboardDismissMode = .interactive
         autocapitalizationType = .none
+        autocorrectionType = .no
+        spellCheckingType = .no
+    }
+    
+    private func setupBorder() {
         layer.borderColor = UIColor.darkGray.withAlphaComponent(0.5).cgColor
         layer.borderWidth = 0.5
         layer.cornerRadius = 5.0
-        contentInset = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 4)
     }
+    
+    private func setupToolbar() {
+        let toolbar = UIToolbar(frame: CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 44.0)))
+        toolbar.setItems([
+            .flexibleSpace(),
+            UIBarButtonItem(systemItem: .done, primaryAction: UIAction { [weak self] action in
+                self?.resignFirstResponder()
+            }),
+        ], animated: false)
+        inputAccessoryView = toolbar
+    }
+    
+    // MARK: - Display changes
     
     func highlightRanges(_ ranges: [Range<String.Index>]) {
         highlightedRanges = ranges
@@ -54,6 +80,8 @@ class RegexTextView: UITextView {
         }
         attributedText = attributedContent
     }
+    
+    // MARK: - Helpers
     
     private func makeAttributedContent() -> NSMutableAttributedString {
         let attributedContent = NSMutableAttributedString(string: text)
