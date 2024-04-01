@@ -56,7 +56,7 @@ class RegexViewController: DSViewController {
     // TODO: Remove lorem ipsum
     override func viewDidLoad() {
         super.viewDidLoad()
-        contentTextView.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat libero tellus, in aliquet ligula aliquet vitae. Cras ullamcorper nisl arcu, vitae ornare massa tristique dictum. Cras neque sapien, porta nec mauris vel, imperdiet dignissim erat. Nam semper ut nisl in sodales. Vestibulum placerat tellus et felis tincidunt bibendum. Duis condimentum lorem eget est bibendum elementum. Aliquam at maximus mauris, vitae imperdiet massa. Nullam id maximus velit, id efficitur augue. Suspendisse potenti. Proin sodales eget turpis sit amet tempus. Vestibulum mollis erat in lacus hendrerit facilisis. In euismod ipsum aliquam, fermentum lacus quis, elementum diam. In elementum facilisis convallis. Aenean non eros et libero efficitur laoreet.\n\nMauris vulputate erat massa, sed dignissim risus semper id. Nunc bibendum, nisi non posuere bibendum, justo nibh viverra tortor, id faucibus lectus erat sodales magna. Morbi quis blandit risus. Quisque sed ultrices diam, vitae pellentesque lacus. Etiam quis ultrices ante. In eleifend ex sit amet rutrum porta. Cras eu dapibus sapien. Curabitur aliquet rutrum eros. Donec sollicitudin felis cursus, feugiat lacus rhoncus, vulputate purus. Maecenas hendrerit placerat velit, in eleifend odio consequat sollicitudin. Fusce euismod velit ipsum, ultricies tincidunt enim finibus a. Quisque vel purus elit. Vestibulum porta ac dolor sit amet viverra. Donec dignissim turpis quis odio semper, a laoreet nisl vehicula. Suspendisse placerat vitae libero at elementum. Aenean scelerisque mi ex, at pellentesque metus facilisis vitae.\n\nQuisque ex lacus, interdum nec leo sed, consequat lacinia mi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer a lectus ac est cursus porta. Vestibulum turpis eros, ultrices vel augue sit amet, accumsan dictum nisl. Duis scelerisque auctor arcu nec ullamcorper. Mauris id tempor magna. In hac habitasse platea dictumst. Nam sed iaculis nisl. Vestibulum eros libero, tristique ut est vel, congue molestie felis. Ut nec malesuada magna, non vestibulum velit. Nullam ipsum augue, semper at euismod at, consequat sed sem.\n\nDuis commodo lorem ac tincidunt ornare. Maecenas a consectetur justo. Aenean in sapien hendrerit, vestibulum nisl in, egestas nunc. Fusce suscipit, dolor eget semper fermentum, urna augue blandit odio, eget lacinia erat lectus eu metus. Vivamus sodales pretium orci, ac efficitur nunc. Sed in sollicitudin felis. Maecenas nisi turpis, finibus ut sodales sed, vulputate id leo. Curabitur vel eleifend metus. Suspendisse potenti. Integer sed placerat nulla. In hac habitasse platea dictumst. Maecenas tempor nunc et massa iaculis, tempus hendrerit libero tincidunt. Etiam luctus urna eget ex facilisis pretium. Phasellus condimentum nibh metus, sed pharetra nunc ornare fringilla.\n\nClass aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent tempus nulla arcu, ac imperdiet sem fringilla vitae. Proin elementum aliquam neque, ut accumsan arcu rutrum non. Nulla rutrum at lectus non mollis. Nullam id ante eu ex placerat dictum. Praesent nulla ex, dignissim in fringilla condimentum, sodales quis lectus."
+        contentTextView.text = .localized(appString: .loremIpsum)
     }
     
     // MARK: - Setup
@@ -78,11 +78,11 @@ class RegexViewController: DSViewController {
     }
     
     private func setupLeftBarButton() {
-        let saveItem = UIAction(title: "Save Pattern", image: UIImage(systemName: "tray.and.arrow.down.fill")) { [weak self] _ in
+        let saveItem = UIAction(title: .localized(appString: .patternSaveButton), image: UIImage(systemName: "tray.and.arrow.down.fill")) { [weak self] _ in
             guard let self = self else { return }
             self.didTapSavePattern()
         }
-        let loadItem = UIAction(title: "Load Pattern", image: UIImage(systemName: "tray.and.arrow.up.fill")) { [weak self] _ in
+        let loadItem = UIAction(title: .localized(appString: .patternLoadButton), image: UIImage(systemName: "tray.and.arrow.up.fill")) { [weak self] _ in
             guard let self = self else { return }
             self.didTapLoadPattern()
         }
@@ -114,7 +114,7 @@ class RegexViewController: DSViewController {
         copyButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
             UIPasteboard.general.string = self.regexTextField.text
-            self.showToast(withMessage: "Copied pattern to clipboard")
+            self.showToast(withMessage: .localized(appString: .patternCopyToastMessage))
         }, for: .touchUpInside)
     }
     
@@ -148,10 +148,10 @@ class RegexViewController: DSViewController {
     }
     
     private func didTapSavePattern() {
-        let alert = UIAlertController(title: "Save Pattern", message: "Choose a name", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alert = UIAlertController(title: .localized(appString: .patternSaveDialogTitle), message: .localized(appString: .patternSaveDialogMessage), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: .localized(appString: .cancel), style: .cancel))
         alert.addTextField { [weak alert] textField in
-            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { [weak self, weak textField, weak alert] _ in
+            let confirmAction = UIAlertAction(title: .localized(appString: .confirm), style: .default) { [weak self, weak textField, weak alert] _ in
                 guard let self = self, let textField = textField else { return }
                 self.savePattern(withName: textField.text)
                 alert?.dismiss(animated: true)
@@ -211,9 +211,10 @@ class RegexViewController: DSViewController {
     }
     
     private func savePattern(withName patternName: String?) {
+        guard let patternName = patternName, let pattern = regexTextField.text else { return }
         do {
-            try dao.create(named: patternName ?? "Untitled", pattern: regexTextField.text ?? "")
-            showToast(withMessage: "Pattern saved")
+            try dao.create(named: patternName, pattern: pattern)
+            showToast(withMessage: .localized(appString: .patternSaveToastMessage, patternName))
         } catch {
             showToast(withMessage: "Error saving pattern")
             debugPrint(error)
@@ -228,7 +229,7 @@ extension RegexViewController: SavedPatternsViewControllerDelegate {
         regexTextField.text = pattern
         regexTextField.sendActions(for: .valueChanged)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-            self?.showToast(withMessage: "Loaded \"\(name)\"")
+            self?.showToast(withMessage: .localized(appString: .patternLoadToastMessage, name))
         }
     }
 }

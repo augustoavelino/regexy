@@ -63,7 +63,7 @@ class SavedPatternsViewController: DSViewController {
     }
     
     private func setupNavigationBar() {
-        title = "Choose"
+        title = .localized(appString: .patternLoadScreenTitle)
         navigationItem.setLeftBarButton(UIBarButtonItem(systemItem: .cancel, primaryAction: UIAction(handler: { [weak self] action in
             self?.dismiss(animated: true)
         })), animated: false)
@@ -101,9 +101,9 @@ class SavedPatternsViewController: DSViewController {
     }
     
     private func showDeleteConfirmationAlert(forItemAt indexPath: IndexPath, completion: @escaping (Bool) -> Void) {
-        let alert = UIAlertController(title: "Delete pattern", message: "Are you sure you wnat to proceed?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Confirm", style: .destructive, handler: { [weak self] _ in
+        let alert = UIAlertController(title: .localized(appString: .patternRemoveDialogTitle), message: .localized(appString: .patternRemoveDialogMessage), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: .localized(appString: .cancel), style: .cancel))
+        alert.addAction(UIAlertAction(title: .localized(appString: .confirm), style: .destructive, handler: { [weak self] _ in
             guard let self = self else { return }
             let result = self.deleteItem(atIndexPath: indexPath)
             completion(result)
@@ -142,7 +142,7 @@ extension SavedPatternsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [
-            UIContextualAction(style: .destructive, title: "Remove", handler: { [weak self] _, _, completion in
+            UIContextualAction(style: .destructive, title: .localized(appString: .remove), handler: { [weak self] _, _, completion in
                 guard let self = self else { return }
                 self.showDeleteConfirmationAlert(forItemAt: indexPath, completion: completion)
             })
