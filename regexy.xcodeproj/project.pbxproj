@@ -11,6 +11,7 @@
 		650CC93B2BB70F3800BF9DD0 /* SavedPatternCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CC93A2BB70F3800BF9DD0 /* SavedPatternCell.swift */; };
 		650CC93D2BB710BB00BF9DD0 /* DSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650CC93C2BB710BB00BF9DD0 /* DSViewController.swift */; };
 		651AF8712BB83D4A0095CDF4 /* SavedPatternsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651AF8702BB83D4A0095CDF4 /* SavedPatternsViewModel.swift */; };
+		652BC4E02BBB37240046B120 /* RegexEvaluatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652BC4DF2BBB37240046B120 /* RegexEvaluatorTests.swift */; };
 		652C7F5B2BB7777700179AF3 /* RegexData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 652C7F592BB7777700179AF3 /* RegexData.xcdatamodeld */; };
 		652D3CF82BADE84900DE2212 /* DSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652D3CF72BADE84900DE2212 /* DSToastView.swift */; };
 		652EA2902BB9AF17009E8DC9 /* DSEmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652EA28F2BB9AF17009E8DC9 /* DSEmptyListView.swift */; };
@@ -30,11 +31,23 @@
 		65EBC81C2BA9E1D6004E4EF0 /* RegexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EBC81B2BA9E1D6004E4EF0 /* RegexViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		652BC4D82BBB35FA0046B120 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65EBC7F62BA9E16E004E4EF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65EBC7FD2BA9E16E004E4EF0;
+			remoteInfo = regexy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		650CC9372BB70ED100BF9DD0 /* SavedPatternsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPatternsViewController.swift; sourceTree = "<group>"; };
 		650CC93A2BB70F3800BF9DD0 /* SavedPatternCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPatternCell.swift; sourceTree = "<group>"; };
 		650CC93C2BB710BB00BF9DD0 /* DSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSViewController.swift; sourceTree = "<group>"; };
 		651AF8702BB83D4A0095CDF4 /* SavedPatternsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPatternsViewModel.swift; sourceTree = "<group>"; };
+		652BC4D42BBB35FA0046B120 /* regexyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = regexyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		652BC4DF2BBB37240046B120 /* RegexEvaluatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexEvaluatorTests.swift; sourceTree = "<group>"; };
 		652C7F5A2BB7777700179AF3 /* RegexData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RegexData.xcdatamodel; sourceTree = "<group>"; };
 		652D3CF72BADE84900DE2212 /* DSToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSToastView.swift; sourceTree = "<group>"; };
 		652EA28F2BB9AF17009E8DC9 /* DSEmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSEmptyListView.swift; sourceTree = "<group>"; };
@@ -57,6 +70,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		652BC4D12BBB35FA0046B120 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EBC7FB2BA9E16E004E4EF0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,6 +104,14 @@
 				650CC93A2BB70F3800BF9DD0 /* SavedPatternCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		652BC4D52BBB35FA0046B120 /* regexyTests */ = {
+			isa = PBXGroup;
+			children = (
+				652BC4DF2BBB37240046B120 /* RegexEvaluatorTests.swift */,
+			);
+			path = regexyTests;
 			sourceTree = "<group>";
 		};
 		652D3CF52BADE81C00DE2212 /* DesignSystem */ = {
@@ -147,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				65EBC8002BA9E16E004E4EF0 /* regexy */,
+				652BC4D52BBB35FA0046B120 /* regexyTests */,
 				65EBC7FF2BA9E16E004E4EF0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				65EBC7FE2BA9E16E004E4EF0 /* regexy.app */,
+				652BC4D42BBB35FA0046B120 /* regexyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,6 +233,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		652BC4D32BBB35FA0046B120 /* regexyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 652BC4DC2BBB35FA0046B120 /* Build configuration list for PBXNativeTarget "regexyTests" */;
+			buildPhases = (
+				652BC4D02BBB35FA0046B120 /* Sources */,
+				652BC4D12BBB35FA0046B120 /* Frameworks */,
+				652BC4D22BBB35FA0046B120 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				652BC4D92BBB35FA0046B120 /* PBXTargetDependency */,
+			);
+			name = regexyTests;
+			productName = regexyTests;
+			productReference = 652BC4D42BBB35FA0046B120 /* regexyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		65EBC7FD2BA9E16E004E4EF0 /* regexy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65EBC8122BA9E16F004E4EF0 /* Build configuration list for PBXNativeTarget "regexy" */;
@@ -227,9 +275,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1520;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					652BC4D32BBB35FA0046B120 = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
+						TestTargetID = 65EBC7FD2BA9E16E004E4EF0;
+					};
 					65EBC7FD2BA9E16E004E4EF0 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -250,11 +303,19 @@
 			projectRoot = "";
 			targets = (
 				65EBC7FD2BA9E16E004E4EF0 /* regexy */,
+				652BC4D32BBB35FA0046B120 /* regexyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		652BC4D22BBB35FA0046B120 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EBC7FC2BA9E16E004E4EF0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +329,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		652BC4D02BBB35FA0046B120 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				652BC4E02BBB37240046B120 /* RegexEvaluatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65EBC7FA2BA9E16E004E4EF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -295,6 +364,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		652BC4D92BBB35FA0046B120 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65EBC7FD2BA9E16E004E4EF0 /* regexy */;
+			targetProxy = 652BC4D82BBB35FA0046B120 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		65EBC80C2BA9E16F004E4EF0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -307,6 +384,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		652BC4DA2BBB35FA0046B120 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6QJFWMSLWU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.augustoavelino.regexyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/regexy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/regexy";
+			};
+			name = Debug;
+		};
+		652BC4DB2BBB35FA0046B120 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6QJFWMSLWU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.augustoavelino.regexyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/regexy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/regexy";
+			};
+			name = Release;
+		};
 		65EBC8102BA9E16F004E4EF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +558,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,6 +586,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -483,6 +603,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		652BC4DC2BBB35FA0046B120 /* Build configuration list for PBXNativeTarget "regexyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				652BC4DA2BBB35FA0046B120 /* Debug */,
+				652BC4DB2BBB35FA0046B120 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		65EBC7F92BA9E16E004E4EF0 /* Build configuration list for PBXProject "regexy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
